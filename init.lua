@@ -84,10 +84,6 @@ I hope you enjoy your Neovim journey,
 P.S. You can delete this when you're done too. It's your config now! :)
 --]]
 
-
-
-
-
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
@@ -168,12 +164,6 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
-
-
-
-
-
-
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
@@ -207,11 +197,10 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
-
 -- Custom keymaps
-vim.keymap.set('n', 'J', '5j')
+vim.keymap.set({ 'n', 'v' }, 'J', '5j')
 vim.keymap.set('n', '<leader>j', 'J')
-vim.keymap.set('n', 'K', '5k')
+vim.keymap.set({ 'n', 'v' }, 'K', '5k')
 
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
@@ -223,12 +212,6 @@ vim.keymap.set('n', '<leader>tn', '<cmd>tabnext<cr>')
 vim.keymap.set('n', '<leader>tp', '<cmd>tabprev<cr>')
 vim.keymap.set('n', '<leader>tc', '<cmd>tabclose<cr>')
 vim.keymap.set('n', '<leader>to', '<cmd>tabonly<cr>')
-
-
-
-
-
-
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -244,16 +227,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
-
-
-
-
-
-
-
-
-
-
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -265,11 +238,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   end
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
-
-
-
-
-
 
 -- [[ Configure and install plugins ]]
 --
@@ -369,11 +337,11 @@ require('lazy').setup({
 
       -- Document existing key chains
       spec = {
-        { '<leader>cp', group = '[C]o[p]ilot' },
+        { '<leader>cp', group = '[C]o[P]ilot' },
         -- { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
         -- { '<leader>d', group = '[D]ocument' },
         -- { '<leader>r', group = '[R]ename' },
-        -- { '<leader>s', group = '[S]earch' },
+        { '<leader>s', group = '[S]earch' },
         -- { '<leader>w', group = '[W]orkspace' },
         -- { '<leader>t', group = '[T]oggle' },
         -- { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
@@ -472,7 +440,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>/', function()
         -- You can pass additional configuration to Telescope to change the theme, layout, etc.
         builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-          winblend = 10,
+          winblend = 0,
           previewer = false,
         })
       end, { desc = '[/] Fuzzily search in current buffer' })
@@ -524,6 +492,11 @@ require('lazy').setup({
       'hrsh7th/cmp-nvim-lsp',
     },
     config = function()
+      -- Hover Documentation Window Border
+      vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
+        border = 'rounded',
+      })
+
       -- Brief aside: **What is LSP?**
       --
       -- LSP is an initialism you've probably heard, but might not understand what it is.
@@ -599,7 +572,7 @@ require('lazy').setup({
           -- or a suggestion from your LSP for this to activate.
           map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
 
-          map('<leader>h', vim.lsp.buf.hover, 'Hover Documentation')
+          map('<leader>h', vim.lsp.buf.hover, '[H]over Documentation')
 
           -- WARN: This is not Goto Definition, this is Goto Declaration.
           --  For example, in C this would take you to the header.
@@ -748,22 +721,22 @@ require('lazy').setup({
   --   },
   --   opts = {
   --     notify_on_error = false,
-  --     format_on_save = function(bufnr)
-  --       -- Disable "format_on_save lsp_fallback" for languages that don't
-  --       -- have a well standardized coding style. You can add additional
-  --       -- languages here or re-enable it for the disabled ones.
-  --       local disable_filetypes = { c = true, cpp = true }
-  --       local lsp_format_opt
-  --       if disable_filetypes[vim.bo[bufnr].filetype] then
-  --         lsp_format_opt = 'never'
-  --       else
-  --         lsp_format_opt = 'fallback'
-  --       end
-  --       return {
-  --         timeout_ms = 500,
-  --         lsp_format = lsp_format_opt,
-  --       }
-  --     end,
+  --     -- format_on_save = function(bufnr)
+  --     --   -- Disable "format_on_save lsp_fallback" for languages that don't
+  --     --   -- have a well standardized coding style. You can add additional
+  --     --   -- languages here or re-enable it for the disabled ones.
+  --     --   local disable_filetypes = { c = false, cpp = true }
+  --     --   local lsp_format_opt
+  --     --   if disable_filetypes[vim.bo[bufnr].filetype] then
+  --     --     lsp_format_opt = 'never'
+  --     --   else
+  --     --     lsp_format_opt = 'fallback'
+  --     --   end
+  --     --   return {
+  --     --     timeout_ms = 500,
+  --     --     lsp_format = lsp_format_opt,
+  --     --   }
+  --     -- end,
   --     formatters_by_ft = {
   --       lua = { 'stylua' },
   --       -- Conform can also run multiple formatters sequentially
@@ -818,6 +791,10 @@ require('lazy').setup({
       luasnip.config.setup {}
 
       cmp.setup {
+        window = {
+          completion = cmp.config.window.bordered(),
+          documentation = cmp.config.window.bordered(),
+        },
         snippet = {
           expand = function(args)
             luasnip.lsp_expand(args.body)
@@ -897,21 +874,35 @@ require('lazy').setup({
     -- change the command in the config to whatever the name of that colorscheme is.
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    "sainnhe/gruvbox-material",
-    priority = 1000, -- Make sure to load this before all the other start plugins.
-    init = function()
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.g.gruvbox_material_background = 'soft'
-      vim.cmd.colorscheme 'gruvbox-material'
-
-      -- You can configure highlights by doing something like:
-      vim.cmd.hi 'Comment gui=none'
+    -- "catppuccin/nvim",
+    -- name = "catppuccin",
+    -- priority = 1000, -- Make sure to load this before all the other start plugins.
+    -- config = function()
+    --   require("catppuccin").setup({
+    --     transparent_background = true,
+    --   })
+    -- end,
+    -- init = function()
+    --   -- Load the colorscheme here.
+    --   -- Like many other themes, this one has different styles, and you could load
+    --   -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+    --   vim.cmd.colorscheme 'catppuccin-mocha'
+    --
+    --   -- You can configure highlights by doing something like:
+    --   vim.cmd.hi 'Comment gui=none'
+    --
+    -- end,
+    'catppuccin/nvim',
+    name = 'catppuccin',
+    priority = 1000,
+    opts = {
+      term_colors = true,
+      transparent_background = true,
+    },
+    config = function(_, opts)
+      require('catppuccin').setup(opts)
+      vim.cmd.colorscheme 'catppuccin-macchiato'
     end,
-    -- opts = {
-    --   transparent = true,
-    -- },
   },
 
   -- Highlight todo, notes, etc in comments
@@ -1029,4 +1020,3 @@ require('lazy').setup({
 })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
