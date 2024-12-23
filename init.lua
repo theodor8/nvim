@@ -204,6 +204,8 @@ vim.keymap.set({ 'n', 'v' }, 'K', '5k')
 
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
+vim.keymap.set('n', '{', '{zz')
+vim.keymap.set('n', '}', '}zz')
 
 vim.keymap.set('i', 'jk', '<Esc>')
 
