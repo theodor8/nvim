@@ -31,11 +31,11 @@ return {
       suggestion = {
         auto_trigger = true,
         enabled = false,
-        keymap = {
-          accept = "<Tab>",
-          next = "<C-j>",
-          prev = "<C-k>",
-        }
+        -- keymap = {
+        --   accept = "<Tab>",
+        --   next = "<C-j>",
+        --   prev = "<C-k>",
+        -- }
       }
     },
     init = function()
@@ -83,5 +83,18 @@ return {
       }
     }
   },
-
+  -- {
+  --   "ray-x/go.nvim",
+  --   dependencies = {  -- optional packages
+  --     "ray-x/guihua.lua",
+  --     "neovim/nvim-lspconfig",
+  --     "nvim-treesitter/nvim-treesitter",
+  --   },
+  --   config = function()
+  --     require("go").setup()
+  --   end,
+  --   event = {"CmdlineEnter"},
+  --   ft = {"go", 'gomod'},
+  --   build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
+  -- },
 }
