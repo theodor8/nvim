@@ -30,12 +30,12 @@ return {
     opts = {
       suggestion = {
         auto_trigger = true,
-        enabled = false,
-        -- keymap = {
-        --   accept = "<Tab>",
-        --   next = "<C-j>",
-        --   prev = "<C-k>",
-        -- }
+        enabled = true,
+        keymap = {
+          accept = "<C-a>",
+          next = "<C-j>",
+          prev = "<C-k>",
+        }
       }
     },
     init = function()
