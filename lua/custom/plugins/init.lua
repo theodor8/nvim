@@ -56,13 +56,12 @@ return {
       },
     },
   },
-  {
-    "zbirenbaum/copilot-cmp",
-    config = function()
-      require("copilot_cmp").setup()
-    end,
-  },
-
+  -- {
+  --   "zbirenbaum/copilot-cmp",
+  --   config = function()
+  --     require("copilot_cmp").setup()
+  --   end,
+  -- },
   {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
@@ -97,4 +96,10 @@ return {
   --   ft = {"go", 'gomod'},
   --   build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
   -- },
+  {
+    "justinmk/vim-sneak",
+  },
+  {
+    "tpope/vim-surround",
+  },
 }
