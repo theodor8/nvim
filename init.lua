@@ -321,10 +321,6 @@ require('lazy').setup({
       'hrsh7th/cmp-nvim-lsp',
     },
     config = function()
-      -- Hover Documentation Window Border
-      vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
-        border = 'rounded',
-      })
 
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
@@ -369,7 +365,10 @@ require('lazy').setup({
           -- or a suggestion from your LSP for this to activate.
           map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
 
-          map('H', vim.lsp.buf.hover, '[H]over Documentation')
+          map('H', function()
+                vim.lsp.buf.hover { border = 'rounded' }
+              end,
+            '[H]over Documentation')
 
           -- This is not Goto Definition, this is Goto Declaration.
           -- For example, in C this would take you to the header.
