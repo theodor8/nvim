@@ -9,6 +9,7 @@ return {
         enabled = true,
         keymap = {
           accept = '<C-a>',
+          accept_word = '<C-w>',
           next = '<C-j>',
           prev = '<C-k>',
         },
