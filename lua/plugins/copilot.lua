@@ -10,6 +10,7 @@ return {
         keymap = {
           accept = '<C-a>',
           accept_word = '<C-w>',
+          accept_line = '<C-l>',
           next = '<C-j>',
           prev = '<C-k>',
         },
