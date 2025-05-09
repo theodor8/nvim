@@ -7,13 +7,13 @@ return {
       suggestion = {
         auto_trigger = true,
         enabled = true,
-        -- keymap = {
-        --   accept = '<C-a>',
-        --   accept_word = '<C-w>',
-        --   accept_line = '<C-l>',
-        --   next = '<C-j>',
-        --   prev = '<C-k>',
-        -- },
+        keymap = {
+          accept = '<C-a>',
+          accept_word = '<C-w>',
+          accept_line = '<C-l>',
+          next = '<C-j>',
+          prev = '<C-k>',
+        },
       },
     },
     init = function()
