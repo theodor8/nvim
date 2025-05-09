@@ -16,9 +16,9 @@ return {
         },
       },
     },
-    -- init = function()
-    --   vim.cmd('Copilot disable')
-    -- end,
+    init = function()
+      vim.cmd('Copilot disable')
+    end,
     keys = {
       {
         '<leader>cps',

@@ -135,13 +135,13 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
--- vim.api.nvim_create_autocmd('VimEnter', {
---   desc = 'Disable Copilot',
---   callback = function()
---     -- Disable Copilot by default
---     vim.cmd('Copilot disable')
---   end,
--- })
+vim.api.nvim_create_autocmd('VimEnter', {
+  desc = 'Disable Copilot',
+  callback = function()
+    -- Disable Copilot by default
+    vim.cmd('Copilot disable')
+  end,
+})
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
