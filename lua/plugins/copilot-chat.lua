@@ -12,8 +12,12 @@ return {
     -- See Commands section for default commands if you want to lazy load on them
     keys = {
       {
-        '<leader>cpc',
+        '<leader>cco',
         '<cmd>CopilotChatOpen<CR>',
+      },
+      {
+        '<leader>ccm',
+        '<cmd>CopilotChatModels<CR>',
       },
     },
   },

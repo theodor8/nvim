@@ -21,15 +21,15 @@ return {
     end,
     keys = {
       {
-        '<leader>cps',
+        '<leader>cs',
         '<cmd>Copilot status<CR>',
       },
       {
-        '<leader>cpe',
+        '<leader>ce',
         '<cmd>Copilot enable<CR>',
       },
       {
-        '<leader>cpd',
+        '<leader>cd',
         '<cmd>Copilot disable<CR>',
       },
     },
